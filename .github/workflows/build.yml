@@ -40,7 +40,7 @@ jobs:
       actions: write
     runs-on: ubuntu-24.04
     steps:
-#       Do not remove this checkout else gclient sync gets confused on what rev of ANGLE to checkout
+#       Do not remove this checkout else gclient sync gets confused on what rev of ANGLE to checkout 
       - name: Checkout
         uses: actions/checkout@v4
 #       if: needs.check-cache-date.outputs.reverify-cache == 'true' is spammed throughout this job because the job itself can't be skipped if we are to use needs for the build job
