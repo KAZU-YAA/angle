@@ -1329,15 +1329,9 @@ class ContextVk : public ContextImpl, public vk::Context, public MultisampleText
 
     void updateUniformBufferBlocksOffset();
 
-    enum class Submit
-    {
-        OutsideRenderPassCommandsOnly,
-        AllCommands,
-    };
-
+    void prepareToSubmitAllCommands();
     angle::Result submitCommands(const vk::Semaphore *signalSemaphore,
-                                 const vk::SharedExternalFence *externalFence,
-                                 Submit submission);
+                                 const vk::SharedExternalFence *externalFence);
     angle::Result flushImpl(const gl::Context *context);
 
     angle::Result synchronizeCpuGpuTime();
@@ -1436,12 +1430,6 @@ class ContextVk : public ContextImpl, public vk::Context, public MultisampleText
     // An alternative could have been to set the static state unconditionally to non-zero.  This is
     // avoided however, as on the affected driver that would disable certain optimizations.
     void updateStencilWriteWorkaround();
-
-    void updateUniformBuffersWithSharedCacheKey(
-        const vk::SharedDescriptorSetCacheKey &sharedCacheKey);
-
-    void updateShaderResourcesWithSharedCacheKey(
-        const vk::SharedDescriptorSetCacheKey &sharedCacheKey);
 
     angle::Result createGraphicsPipeline();
 
